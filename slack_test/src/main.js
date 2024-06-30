@@ -18,6 +18,13 @@ app.message("ping", async ({ command, say }) => {
   }
 });
 
+app.command("/ping", async ({ command, ack, respond }) => {
+  // Acknowledge command request
+  await ack();
+
+  await respond(`Pong!`);
+});
+
 app.message("hey", async ({ command, say }) => {
   try {
     say("Hello Human!");
