@@ -5,6 +5,36 @@ require("dotenv").config();
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
+  socketMode: true, // enable to use socket mode
+  appToken: process.env.SLACK_APP_TOKEN,
+});
+
+app.message("ping", async ({ command, say }) => {
+  try {
+    say("Pong!");
+  } catch (error) {
+    console.log("err");
+    console.error(error);
+  }
+});
+
+app.message("hey", async ({ command, say }) => {
+  try {
+    say("Hello Human!");
+  } catch (error) {
+    console.log("err");
+    console.error(error);
+  }
+});
+
+// matches any string with RegEx
+app.message(/hi/, async ({ command, say }) => {
+  try {
+    say("Hello Human!");
+  } catch (error) {
+    console.log("err");
+    console.error(error);
+  }
 });
 
 (async () => {
